@@ -22,7 +22,7 @@ def sent_analyzer():
     response = emotion_detection(text_to_analyze)
     # Check if the label is None, indicating an error or invalid input
     if response is None or response["dominant_emotion"] is None:
-        return "Invalid input! Try again."
+        return "Invalid text! Please try again!."
     else:
         # Return a formatted string with the sentiment label and score
         return f"For the given statement, the system response is 'anger': {response['anger']}, 'disgust': {response['disgust']}, 'fear': {response['fear']}, 'joy': {response['fear']} and 'sadness': {response['sadness']}. The dominant emotion is {response['dominant_emotion']}."
