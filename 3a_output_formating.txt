@@ -13,19 +13,31 @@ def emotion_detection(text_to_analyse):
     # Send a POST request to the API with the text and headers
     response = requests.post(url, json=myobj, headers=header)
 
+    # ---
+    # Step 4
+    # Formating the response as json
+    # formatted_response = json.loads(response.text)
+    # label = formatted_response["documentSentiment"]["label"]
+    # score = formatted_response["documentSentiment"]["score"]
+    # ---
+
+    # Step 7
     # If the response status code is 200, extract the label and score from the response
     if response.status_code == 200:
         # Parse the response from the API
         formatted_response = json.loads(response.text)
         label = formatted_response["emotionPredictions"][0]["emotion"]
-        # Get the maximum value from the dictionary
+        # Getting the  top emotion
         label["dominant_emotion"] = max(label, key=label.get)
+        score = formatted_response# ["emotionPredictions"]["emotion"]
     # If the response status code is 500, set label and score to None
     elif response.status_code == 500:
         label = None
+        score = None
     # For any other unexpected status codes, set label and score to None
     else:
         label = None
+        score = None
 
     # Return the response text from the API
     # return {"label": label, "score": score}
@@ -34,3 +46,4 @@ def emotion_detection(text_to_analyse):
     # return response.text
     # For the task 3 of the end proyect
     return label
+
