@@ -26,8 +26,8 @@ def emotion_detection(text_to_analyse):
     if response.status_code == 200:
         # Parse the response from the API
         formatted_response = json.loads(response.text)
-        label = formatted_response["emotion"]
-        score = formatted_response["emotion"]
+        label = formatted_response["emotionPredictions"]["emotion"]
+        score = formatted_response["emotionPredictions"]
     # If the response status code is 500, set label and score to None
     elif response.status_code == 500:
         label = None
